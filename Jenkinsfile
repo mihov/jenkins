@@ -12,10 +12,9 @@ pipeline {
         sh 'mvn clean package'
       }
     }
-    stage('Static Analisys') {
+    stage('Checkstyle') {
       steps {
-        sh 'mvn findbugs:check'
-        findbugs()
+        checkstyle(useDeltaValues: true, usePreviousBuildAsReference: true, useStableBuildAsReference: true)
       }
     }
   }
