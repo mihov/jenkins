@@ -9,7 +9,10 @@ pipeline {
     }
     stage('Buld') {
       steps {
-        sh 'mvn clean package'
+        withMaven(jdk: 'JAVA', maven: '3.5.0') {
+          sh 'mvn clean package'
+        }
+        
       }
     }
     stage('Checkstyle') {
