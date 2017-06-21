@@ -10,7 +10,7 @@ pipeline {
     stage('Buld') {
       steps {
         withMaven(jdk: 'JAVA', maven: '3.5.0') {
-          sh 'mvn clean package'
+          sh 'mvn clean -P dev deploy'
         }
         
       }
