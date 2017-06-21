@@ -17,5 +17,10 @@ pipeline {
         checkstyle(useDeltaValues: true, usePreviousBuildAsReference: true, useStableBuildAsReference: true)
       }
     }
+    stage('Artefacts') {
+      steps {
+        archiveArtifacts 'target/*.war'
+      }
+    }
   }
 }
