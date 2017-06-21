@@ -4,14 +4,12 @@ pipeline {
     stage('SCM') {
       steps {
         git(url: 'ssh://git@bitbucket.imperiaonline.org:7999/javb/resource-manager.git', branch: 'develop', poll: true, changelog: true)
+        sh 'git status'
       }
     }
     stage('Buld') {
       steps {
-        withMaven(jdk: '1.8.131', maven: '3.5.0') {
-          sh 'mvn clean install'
-        }
-        
+        sh 'mvn clean package'
       }
     }
     stage('Static Analisys') {
